@@ -1,15 +1,65 @@
+# ----------------------
 # Python
+# ----------------------
 __pycache__/
-*.pyc
+*.py[codz]
+*$py.class
+*.so
+
+# Virtual environments
+.env
+.envrc
+.venv
 venv/
+env/
+ENV/
 
-# Database
+# ----------------------
+# Databases
+# ----------------------
 *.db
+db.sqlite3
+db.sqlite3-journal
 
-# Excel
+# ----------------------
+# Excel files
+# ----------------------
 *.xlsx
 *.xls
 ~$*.xlsx
 
+# ----------------------
 # Uploads
+# ----------------------
 uploads/
+
+# ----------------------
+# Build / packaging
+# ----------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ----------------------
+# Logs / cache
+# ----------------------
+*.log
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ----------------------
+# OS files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# IDE
+# ----------------------
+.vscode/
+.idea/
