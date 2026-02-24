@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="profile-card">
+      {% if student['photo'] %}
+        <img src="/uploads/{{ student['photo'] }}" class="img-fluid rounded mb-2" alt="photo">
+      {% else %}
+        <div class="text-center mb-2" style="padding:30px;background:#f5f5f5;border-radius:8px;">No Photo</div>
+      {% endif %}
+      <h4>{{ student['student_name'] }}</h4>
+      <p class="text-muted">{{ student['admission_class'] }} • {{ student['admission_no'] }}</p>
+      <a class="btn btn-outline-primary" href="{{ url_for('edit_student', student_id=student['id']) }}">Edit</a>
+      <form method="post" action="{{ url_for('delete_student', student_id=student['id']) }}" style="display:inline-block">
+        <button class="btn btn-danger" onclick="return confirm('Delete?')">Delete</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="apple-card">
+      <h5>Details</h5>
+      <table class="table">
+        <tr><th>Father</th><td>{{ student['father_name'] }}</td></tr>
+        <tr><th>Mother</th><td>{{ student['mother_name'] }}</td></tr>
+        <tr><th>DOB</th><td>{{ student['dob'] }}</td></tr>
+        <tr><th>Mobile</th><td>{{ student['mobile_no'] }}</td></tr>
+        <tr><th>Aadhaar</th><td>{{ student['aadhaar_no'] }}</td></tr>
+        <tr><th>Address</th><td>{{ student['address'] }}</td></tr>
+      </table>
+
+      <h5 class="mt-3">Remarks</h5>
+      <form method="post" action="{{ url_for('add_remark', student_id=student['id']) }}">
+        <textarea name="remark" class="form-control mb-2"></textarea>
+        <button class="btn btn-primary">Add Remark</button>
+      </form>
+
+      <h5 class="mt-3">Last remarks</h5>
+      {% for r in remarks %}
+        <div class="border rounded p-2 mb-2">
+          <strong>{{ r['author'] }}</strong> <small class="text-muted">{{ r['created_at'] }}</small>
+          <div>{{ r['text'] }}</div>
+        </div>
+      {% else %}
+        <p class="text-muted">No remarks</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

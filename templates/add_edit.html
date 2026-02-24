@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="apple-card mx-auto" style="max-width:900px">
+  <h4>{{ 'Add Student' if mode=='add' else 'Edit Student' }}</h4>
+  <form method="post" enctype="multipart/form-data">
+    <div class="row g-2">
+      <div class="col-md-3"><input class="form-control" name="school_id" placeholder="School ID" value="{{ student['school_id'] if student else '' }}"></div>
+      <div class="col-md-3"><input class="form-control" name="sl_no" placeholder="SL No" value="{{ student['sl_no'] if student else '' }}"></div>
+      <div class="col-md-6"><input class="form-control" name="student_name" placeholder="Student Name" value="{{ student['student_name'] if student else '' }}" required></div>
+
+      <div class="col-md-4 mt-2"><input class="form-control" name="father_name" placeholder="Father" value="{{ student['father_name'] if student else '' }}"></div>
+      <div class="col-md-4 mt-2"><input class="form-control" name="mother_name" placeholder="Mother" value="{{ student['mother_name'] if student else '' }}"></div>
+      <div class="col-md-4 mt-2"><input class="form-control" name="mobile_no" placeholder="Mobile" value="{{ student['mobile_no'] if student else '' }}"></div>
+
+      <div class="col-md-3 mt-2"><input class="form-control" name="admission_class" placeholder="Class" value="{{ student['admission_class'] if student else '' }}"></div>
+      <div class="col-md-3 mt-2"><input class="form-control" name="admission_no" placeholder="Admission No" value="{{ student['admission_no'] if student else '' }}"></div>
+      <div class="col-md-3 mt-2"><input class="form-control" name="dob" placeholder="DOB" value="{{ student['dob'] if student else '' }}"></div>
+      <div class="col-md-3 mt-2"><input class="form-control" name="aadhaar_no" placeholder="Aadhaar" value="{{ student['aadhaar_no'] if student else '' }}"></div>
+
+      <div class="col-md-6 mt-3">
+        <input class="form-control" type="file" name="photo" accept="image/*">
+      </div>
+
+      <div class="col-12 mt-3">
+        <textarea class="form-control" name="remarks" placeholder="Remarks">{{ student['remarks'] if student else '' }}</textarea>
+      </div>
+
+      <div class="col-12 mt-3">
+        <button class="btn btn-primary">{{ 'Create' if mode=='add' else 'Save' }}</button>
+        <a class="btn btn-secondary" href="{{ url_for('search') }}">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

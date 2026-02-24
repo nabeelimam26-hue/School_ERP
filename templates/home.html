@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="apple-card p-5">
+    <h1 class="mb-3">Welcome to Student ERP</h1>
+    <p class="lead">Search student records, view profiles, update details — all in one clean interface.</p>
+
+    <form action="/search" class="mt-4 d-flex">
+        <input class="form-control me-2" name="q" placeholder="Search by name, father, mobile..." />
+        <button class="btn btn-dark px-4">Search</button>
+    </form>
+</div>
+
+{% endblock %}

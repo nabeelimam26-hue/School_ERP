@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="apple-card mx-auto" style="max-width:700px">
+  <h3>Create user</h3>
+  <form method="post">
+    <div class="row">
+      <div class="col"><input class="form-control" name="username" placeholder="username"></div>
+      <div class="col"><input class="form-control" name="full_name" placeholder="Full name"></div>
+    </div>
+    <div class="row mt-2">
+      <div class="col"><input class="form-control" name="password" placeholder="password" type="password"></div>
+      <div class="col">
+        <select name="role" class="form-control">
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+          <option value="viewer">Viewer</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary mt-3">Create</button>
+  </form>
+</div>
+{% endblock %}

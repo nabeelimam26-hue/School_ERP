@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Duplicate Students</h2>
+  <p>Pairs detected by aadhaar / phone / name+dob heuristic.</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID 1</th><th>ID 2</th><th>Name 1</th><th>Name 2</th><th>Aadhaar 1</th><th>Aadhaar 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in dup %}
+      <tr>
+        <td>{{ d.id1 }}</td>
+        <td>{{ d.id2 }}</td>
+        <td>{{ d.name1 }}</td>
+        <td>{{ d.name2 }}</td>
+        <td>{{ d.aad1 }}</td>
+        <td>{{ d.aad2 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

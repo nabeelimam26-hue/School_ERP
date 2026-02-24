@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="apple-card">
+  <h4>Attendance for class {{ cls }}</h4>
+  <form method="post">
+    <div class="mb-2">
+      <input type="date" name="date" value="{{ dates[0] if dates else '' }}" class="form-control" />
+    </div>
+    <table class="table">
+      <thead><tr><th>Student</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+          <td>{{ s['student_name'] }}</td>
+          <td>
+            <select name="status_{{ s['id'] }}" class="form-control">
+              <option value="present">Present</option>
+              <option value="absent">Absent</option>
+            </select>
+          </td>
+          <td><input name="note_{{ s['id'] }}" class="form-control"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button class="btn btn-primary">Save Attendance</button>
+  </form>
+</div>
+{% endblock %}

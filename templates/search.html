@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="apple-card">
+  <h4>Search</h4>
+  <form class="row g-2" method="get">
+    <div class="col-md-6"><input class="form-control" name="q" value="{{ query }}" placeholder="Name / father / phone / admission"></div>
+    <div class="col-md-2"><input class="form-control" name="class" placeholder="Class" value="{{ filters.class }}"></div>
+    <div class="col-md-2">
+      <select class="form-control" name="gender">
+        <option value="">Any gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+    </div>
+    <div class="col-md-2"><button class="btn btn-primary">Search</button></div>
+  </form>
+
+  <ul class="list-group mt-3">
+    {% for r in results %}
+      <li class="list-group-item d-flex justify-content-between">
+        <div>
+          <b>{{ r['student_name'] }}</b><br>
+          <span class="text-muted">{{ r['father_name'] }} • {{ r['admission_class'] }}</span>
+        </div>
+        <div>
+          <a class="btn btn-sm btn-outline-primary" href="{{ url_for('view_student', student_id=r['id']) }}">View</a>
+          <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('edit_student', student_id=r['id']) }}">Edit</a>
+        </div>
+      </li>
+    {% else %}
+      <li class="list-group-item">No results</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

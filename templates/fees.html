@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="apple-card">
+  <h4>Fees</h4>
+  <form method="post" class="row g-2">
+    <div class="col-md-3"><input class="form-control" name="year" placeholder="Year" value="{{ current_year }}"></div>
+    <div class="col-md-3"><input class="form-control" name="month" placeholder="Month" value="{{ current_month }}"></div>
+    <div class="col-md-3"><input class="form-control" name="amount" placeholder="Amount"></div>
+    <div class="col-md-3"><button class="btn btn-primary">Add Fee</button></div>
+  </form>
+
+  <table class="table mt-3">
+    <thead><tr><th>Year</th><th>Month</th><th>Amount</th><th>Paid</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for f in fees %}
+      <tr>
+        <td>{{ f['year'] }}</td>
+        <td>{{ f['month'] }}</td>
+        <td>{{ f['amount'] }}</td>
+        <td>{{ 'Yes' if f['paid'] else 'No' }}</td>
+        <td>
+          {% if not f['paid'] %}
+            <form method="post" action="{{ url_for('pay_fee', fee_id=f['id']) }}"><button class="btn btn-sm btn-success">Mark Paid</button></form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

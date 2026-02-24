@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="apple-card">
+      <h5>Total Students</h5>
+      <h2>{{ total }}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="apple-card">
+      <h5>Boys</h5><h2>{{ boys }}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="apple-card">
+      <h5>Girls</h5><h2>{{ girls }}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="apple-card">
+      <h5>Export / Tools</h5>
+      <a class="btn btn-outline-primary btn-sm" href="{{ url_for('export_csv') }}">Export CSV</a>
+      <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('backup_db') }}">Download Backup</a>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 apple-card">
+  <h5>Students per class</h5>
+  <canvas id="classChart" height="80"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('classChart').getContext('2d');
+const labels = {{ per_class | map(attribute=0) | list | tojson }};
+const data = {{ per_class | map(attribute=1) | list | tojson }};
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{ label: 'Students', data: data }]
+    },
+    options: { responsive:true }
+});
+</script>
+{% endblock %}
