@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Database
+*.db
+
+# Excel
+*.xlsx
+*.xls
+~$*.xlsx
+
+# Uploads
+uploads/
