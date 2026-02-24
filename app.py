@@ -695,4 +695,6 @@ if __name__ == "__main__":
     except Exception as e:
         print("Importer startup error:", e)
         traceback.print_exc()
-    app.run(debug=True, port=5000,host="0.0.0.0")
+
+    debug_mode = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(debug=debug_mode, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
